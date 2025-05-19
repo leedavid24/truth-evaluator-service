@@ -86,4 +86,5 @@ Example:
 ```
 
 ## UML Sequence Diagram
-![UML](https://github.com/user-attachments/assets/5a88661a-91d0-4917-9785-0e8952429ee8)
+![UML(1)](https://github.com/user-attachments/assets/cd26ff1b-125b-4547-b7d1-c264878fb96a)
+
