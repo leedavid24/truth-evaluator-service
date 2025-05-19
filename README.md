@@ -5,6 +5,11 @@ The truth evaluation microservice allows users to validate claims based on its a
 
 ## Getting Started
 
+This program uses pre-trained models from [Hugging Face](https://huggingface.co/). Depending on the model's used it may require significant storage and computational power, its advised to look at specific model requirements before using them.
+
+The default models used are [facebook/bart-large-mnli](https://huggingface.co/facebook/bart-large-mnli) for zero-shot classification and [google/flan-t5-base](https://huggingface.co/google/flan-t5-base) for reasoning and text generation.
+
+
 ### Prerequisites
 -   Python Version 3.11 or less (`distutils` is not supported on 3.12)
 -   8 GB of RAM or higher (if running models locally)
@@ -18,12 +23,12 @@ The truth evaluation microservice allows users to validate claims based on its a
 4. Run `pip install -r requirements.txt`
 5. Configure a `.env` file with the following attributes:
    
-    | Attribute          | Default                    | Description                                                                         |
-    | ------------------ | -------------------------- | ----------------------------------------------------------------------------------- |
-    | `HOST`             | `localhost`                | The host for the server.                                                            |
-    | `PORT`             | 8000                       | The port the server will run on.                                                    |
+    | Attribute          | Default                    | Description                                                                        |
+    | ------------------ | -------------------------- |------------------------------------------------------------------------------------|
+    | `HOST`             | `localhost`                | The host for the server.                                                           |
+    | `PORT`             | 8000                       | The port the server will run on.                                                   |
     | `PREDICTION_MODEL` | `facebook/bart-large-mnli` | The model type used of classifying statements and determining the confidence score. |
-    | `GENERATIVE_MODEL` | `google/flan-t5-base`      | The Generative AI model to use for reasoning claims.                                |
+    | `REASONING_MODEL` | `google/flan-t5-base`      | The reasoning model to use for determining the reason of claims.                   |
 
 
 6. Run `python -m main.py`

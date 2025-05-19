@@ -8,7 +8,7 @@ load_dotenv()
 app = Flask(__name__)
 
 PREDICTION_MODEL = os.getenv('PREDICTION_MODEL', 'facebook/bart-large-mnli')
-GENERATIVE_MODEL = os.getenv('GENERATIVE_MODEL', 'google/flan-t5-base')
+GENERATIVE_MODEL = os.getenv('REASONING_MODEL', 'google/flan-t5-base')
 
 # Load a Generative AI model to provide the reason
 model = AutoModelForSeq2SeqLM.from_pretrained(GENERATIVE_MODEL)
@@ -62,6 +62,13 @@ def generate_reason(prompt: str) -> str:
 
 @app.route("/truth-evaluator-service/evaluate", methods=["POST"])
 def evaluate():
+    """
+    POST request to validate claim
+    :return: HTTP response
+        - 200 - confidence score, reason, and rating returned
+        - 400 Invalid claim attribute
+        - 500 Exception error
+    """
     try:
         body_params = request.get_json()
         if body_params.get('claim') is None:
