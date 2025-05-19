@@ -6,3 +6,4 @@ torch
 python-dotenv
 hf_xet
 sentencepiece
+protobuf

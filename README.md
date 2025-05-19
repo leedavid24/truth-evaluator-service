@@ -60,9 +60,9 @@ Example:
   "reason": "Paris is a city in France. The answer is yes."
 }
 ```
-| Attribute | Type | Description | 
-|-----------|------|------------|
-| reason | string | The reason for the HTTP status code (invalid claim parameter type or missing)
+| Attribute | Type   | Description                                                                   | 
+|-----------|--------|-------------------------------------------------------------------------------|
+| reason    | string | The reason for the HTTP status code (invalid claim parameter type or missing) |
 
 HTTP 400 (Response Body Attributes):
 

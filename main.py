@@ -25,31 +25,33 @@ def validate_claim(claim: str) -> dict:
     :param claim: Statement to verify.
     :return: dict containing the "rating", "confidence" and "reason"
     """
-    labels = ["true", "false", "unverified"]
+    labels = ["true", "false"]
 
-    pre_process_context = (f"Claim: '{claim}, is Is this claim true, false or unverified? "
-                           f"Please provide a clear, concise factual reason.")
+    pre_process_context = (f"Claim: '{claim}, is Is this claim true or false? "
+                           f"State your estimate. Provide a clear factual reason.")
     context = generate_reason(pre_process_context)
-    result = classifier(f"Context (AI generated): {context} \n Claim: {claim}", candidate_labels=labels)
+    result = classifier(f"Context: {context} \n Claim: {claim}", candidate_labels=labels)
     prediction = result['labels'][0]
     confidence = int(round(float(result['scores'][0]) * 100))
 
-    post_process_text = (f"Claim: '{claim}'.\n Confidence score: {confidence} \n Prediction: {prediction} \n "
-                         f"Please provide a clear, concise factual reason.")
-    reason = generate_reason(post_process_text)
+    if confidence < 50:
+        return {
+            "rating": "unverified",
+            "confidence": confidence,
+            "reason": "The model used is unsure about this claim."
+        }
+
     return {
         "rating": prediction,
         "confidence": confidence,
-        "reason": reason
+        "reason": context
     }
 
 
 def generate_reason(prompt: str) -> str:
     """
     Used by the generative AI model (given the prompt) to determine the reason for the claim.
-    :param claim: The claim statement.
-    :param prediction: The classification that was given by the prediction model.
-    :param confidence: The confidence score that was given by the prediction model.
+    :param prompt: The prompt to use in the AI model
     :return: String with the reason
     """
     inputs = tokenizer.encode(prompt, return_tensors="pt", truncation=True, max_length=512)
