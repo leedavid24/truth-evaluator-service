@@ -81,3 +81,4 @@ Example:
 ```
 
 ## UML Sequence Diagram
+![UML](https://github.com/user-attachments/assets/5a88661a-91d0-4917-9785-0e8952429ee8)
