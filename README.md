@@ -37,9 +37,9 @@ The default models used are [facebook/bart-large-mnli](https://huggingface.co/fa
 
 #### Validate a Claim: POST `${HOST}:${PORT}/truth-evaluator-service/validate`
 
-| Attribute | Type | Required | Description | Example |
-|-----------|------|----------|-------------|---------|
-
+| Attribute | Type   | Required | Description                                           | Example                      |
+|-----------|--------|----------|-------------------------------------------------------|------------------------------|
+| `claim`     | string | `true`    | A statement for the microservice to validate against. | `"The moon is made of cheese."` |
 
 ### How to Receive Data
 
