@@ -1,0 +1,8 @@
+flask
+pydantic
+fastapi
+transformers
+torch
+python-dotenv
+hf_xet
+sentencepiece
